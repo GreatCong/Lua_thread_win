@@ -1,7 +1,7 @@
 # FreeRTOS-Simulator
 It can be used in Windows and Linux
 
-##Change
+## Change
 Here,I add thread function for lua to the Simulator, whwich is from Lua RTOS.
 
 ### Lua-RTOS
