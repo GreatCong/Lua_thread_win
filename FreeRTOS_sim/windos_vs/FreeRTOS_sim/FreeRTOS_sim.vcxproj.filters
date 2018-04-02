@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="FreeRTOS">
+      <UniqueIdentifier>{aed7a333-37d3-4f2f-b826-32e8601dbc93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Demo">
+      <UniqueIdentifier>{a14541b0-ed81-4715-93fd-8580cc09f33b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeRTOS\include">
+      <UniqueIdentifier>{b930f856-1ca8-4936-b0fe-7656f93add62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeRTOS\portable">
+      <UniqueIdentifier>{7fb9f8cc-3f22-4707-90c8-f6835bf7aeca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeRTOS\portable\mem">
+      <UniqueIdentifier>{cc401c83-89b6-4cd4-b933-24ea63170207}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pthread">
+      <UniqueIdentifier>{6711df0d-e2cb-4019-8da8-6faf6b00b567}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sys">
+      <UniqueIdentifier>{27ef4fe8-d74b-4ef0-9511-566a93643684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua">
+      <UniqueIdentifier>{7f60c2ae-f955-4870-8f8f-ec42d40ec93d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua_adds">
+      <UniqueIdentifier>{54bab824-dd53-45cd-ae39-e659d89bb6bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="freertos_adds">
+      <UniqueIdentifier>{203b4a96-f4d1-4eb4-81dd-6afd4e154a83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua\src">
+      <UniqueIdentifier>{08b5fe83-28e1-40e0-ac8c-29089fa0ecb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua_adds\modules">
+      <UniqueIdentifier>{bd9bb64c-0340-4167-b678-2911d226744a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua_adds\lua_c">
+      <UniqueIdentifier>{95e85a30-f444-46c9-ae8f-49bfdbb8c531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua_adds\user">
+      <UniqueIdentifier>{45e75acc-3faa-4d23-8808-c090472bfa44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="users">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="users\Freertos">
+      <UniqueIdentifier>{d00ae799-4a95-4b58-b724-84a9576c30f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="users\Freertos\windows">
+      <UniqueIdentifier>{5d9c4994-d1fc-4a51-aea3-6a63d04f0419}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Demo\AbortDelay.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\BlockQ.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\blocktim.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\countsem.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\death.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\dynamic.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\EventGroupsDemo.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\flop.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\GenQTest.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\integer.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\IntSemTest.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\PollQ.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\QPeek.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\QueueOverwrite.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\QueueSet.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\QueueSetPolling.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\recmutex.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\semtest.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\TaskNotify.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demo\TimerDemo.c">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\portable\MSVC-MingW\port.c">
+      <Filter>FreeRTOS\portable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\croutine.c">
+      <Filter>FreeRTOS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\event_groups.c">
+      <Filter>FreeRTOS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\list.c">
+      <Filter>FreeRTOS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\queue.c">
+      <Filter>FreeRTOS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\tasks.c">
+      <Filter>FreeRTOS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\timers.c">
+      <Filter>FreeRTOS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Project\main.c">
+      <Filter>users</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lapi.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lauxlib.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lbaselib.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lbitlib.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lcode.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lcorolib.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lctype.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\ldblib.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\ldebug.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\ldo.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\ldump.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lfunc.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lgc.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\linit.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\liolib.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\llex.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lmathlib.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lmem.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\loadlib.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lobject.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lopcodes.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\loslib.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lparser.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lstate.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lstring.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lstrlib.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\ltable.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\ltablib.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\ltm.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lundump.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lutf8lib.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lvm.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-5.3.4\src\lzio.c">
+      <Filter>lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua_adds\Luac\lua.c">
+      <Filter>lua_adds\lua_c</Filter>
+    </ClCompile>
+    <ClCompile Include="lua_adds\modules\thread.c">
+      <Filter>lua_adds\modules</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\mutex_sys.c">
+      <Filter>sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\panic_sys.c">
+      <Filter>sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\status.c">
+      <Filter>sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\list\list_sys.c">
+      <Filter>sys</Filter>
+    </ClCompile>
+    <ClCompile Include="usleep.c">
+      <Filter>sys</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua_test.c">
+      <Filter>lua_adds\user</Filter>
+    </ClCompile>
+    <ClCompile Include="pthread\attr.c">
+      <Filter>pthread</Filter>
+    </ClCompile>
+    <ClCompile Include="pthread\cleanup.c">
+      <Filter>pthread</Filter>
+    </ClCompile>
+    <ClCompile Include="pthread\cond.c">
+      <Filter>pthread</Filter>
+    </ClCompile>
+    <ClCompile Include="pthread\create.c">
+      <Filter>pthread</Filter>
+    </ClCompile>
+    <ClCompile Include="pthread\join.c">
+      <Filter>pthread</Filter>
+    </ClCompile>
+    <ClCompile Include="pthread\key.c">
+      <Filter>pthread</Filter>
+    </ClCompile>
+    <ClCompile Include="pthread\mutex.c">
+      <Filter>pthread</Filter>
+    </ClCompile>
+    <ClCompile Include="pthread\once.c">
+      <Filter>pthread</Filter>
+    </ClCompile>
+    <ClCompile Include="pthread\pthread.c">
+      <Filter>pthread</Filter>
+    </ClCompile>
+    <ClCompile Include="pthread\self.c">
+      <Filter>pthread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\portable\MemMang\heap_4.c">
+      <Filter>FreeRTOS\portable\mem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Project\win_runTime\Run-time-stats-utils.c">
+      <Filter>users\Freertos\windows</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\include\croutine.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\deprecated_definitions.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\event_groups.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\FreeRTOS.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\list.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\mpu_prototypes.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\mpu_wrappers.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\portable.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\projdefs.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\queue.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\semphr.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\StackMacros.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\task.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\include\timers.h">
+      <Filter>FreeRTOS\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\portable\MSVC-MingW\portmacro.h">
+      <Filter>FreeRTOS\portable</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lapi.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lauxlib.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lcode.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lctype.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\ldebug.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\ldo.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lfunc.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lgc.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\llex.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\llimits.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lmem.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lobject.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lopcodes.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lparser.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lprefix.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lstate.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lstring.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\ltable.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\ltm.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lua.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\luaconf.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lualib.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lundump.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lvm.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-5.3.4\src\lzio.h">
+      <Filter>lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua_adds\lua_adds.h">
+      <Filter>lua_adds</Filter>
+    </ClInclude>
+    <ClInclude Include="lua_adds\Lua_modules.h">
+      <Filter>lua_adds</Filter>
+    </ClInclude>
+    <ClInclude Include="lua_adds\my_luaconf.h">
+      <Filter>lua_adds</Filter>
+    </ClInclude>
+    <ClInclude Include="lua_adds\modules\auxmods.h">
+      <Filter>lua_adds\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="lua_adds\modules\thread.h">
+      <Filter>lua_adds\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\debug.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\mutex_sys.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\panic_sys.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\queue_sys.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\status.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\list\list_sys.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="unistd.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="pthread\pthread.h">
+      <Filter>pthread</Filter>
+    </ClInclude>
+    <ClInclude Include="myBoardDef.h">
+      <Filter>users</Filter>
+    </ClInclude>
+    <ClInclude Include="Freertos_adds\portmacro_add.h">
+      <Filter>freertos_adds</Filter>
+    </ClInclude>
+    <ClInclude Include="Freertos_adds\tasks_adds.h">
+      <Filter>freertos_adds</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Project\FreeRTOSConfig.h">
+      <Filter>users\Freertos</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
