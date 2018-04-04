@@ -23,10 +23,10 @@ In their wiki, https://github.com/whitecatboard/Lua-RTOS-ESP32/wiki, you have mo
 
 ## note
 * VS version supported
- * VS2013
- * VS2015
- * others(not tested)
+	* VS2013
+	* VS2015
+	* others(not tested)
 * Platform supported
- * win32(x86)
+	* win32(x86)
 
 
