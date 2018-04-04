@@ -21,12 +21,13 @@ In their wiki, https://github.com/whitecatboard/Lua-RTOS-ESP32/wiki, you have mo
 * thread.sleepms(milliseconds)
 * thread.sleepus(useconds)
 
-## note
-* VS version supported
-	* VS2013
-	* VS2015
-	* others(not tested)
-* Platform supported
-	* win32(x86)
+## Note
+###### VS version supported
+* VS2013
+* VS2015
+* others(not tested)
+
+###### Platform supported
+* win32(x86)
 
 
