@@ -68,7 +68,7 @@ void _pthread_init() {
     list_init(&key_list, 1);
 }
 
-int _pthread_create(pthread_t *id, int stacksize, int initial_state,
+int _pthread_create(pthread_t *id, int priority, int stacksize, int initial_state,
                     void *(*start_routine)(void *), void *args
 ) {
     xTaskHandle xCreatedTask;              // Related task
@@ -135,10 +135,11 @@ int _pthread_create(pthread_t *id, int stacksize, int initial_state,
     mtx_lock(&thread->init_mtx);
 
     // Create related task
-    res = xTaskCreate(
-            pthreadTask, "lthread", stacksize, taskArgs, 
-            tskDEF_PRIORITY, &xCreatedTask
-    );
+    //res = xTaskCreate(
+    //        pthreadTask, "lthread", stacksize, taskArgs, 
+    //        tskDEF_PRIORITY, &xCreatedTask
+    //);
+	res = xTaskCreate(pthreadTask, "lthread", stacksize, taskArgs, priority, &xCreatedTask);//add by lcj
    
     if(res != pdPASS) {
         // Remove from thread list
@@ -433,3 +434,51 @@ void pthreadTask(void *taskArgs) {
     // End related task
     vTaskDelete(NULL);
 }
+
+//add by lcj
+int _pthread_stack_free(pthread_t id) {
+	struct pthread *thread;
+	int res;
+
+	// Get thread
+	res = list_get(&thread_list, id, (void **)&thread);
+	if (res) {
+		errno = res;
+		return res;
+	}
+#if INCLUDE_uxTaskGetStackHighWaterMark
+	return (int)uxTaskGetStackHighWaterMark(thread->task);
+#else
+	return -0xff;
+#endif
+}
+
+int _pthread_stack(pthread_t id) {
+	struct pthread *thread;
+	int res;
+
+	// Get thread
+	res = list_get(&thread_list, id, (void **)&thread);
+	if (res) {
+		errno = res;
+		return res;
+	}
+
+	/*return (int)uxGetStack(thread->task);*/
+	return -0xff;
+}
+
+int _pthread_priority(pthread_t id) {
+	struct pthread *thread;
+	int res;
+
+	// Get thread
+	res = list_get(&thread_list, id, (void **)&thread);
+	if (res) {
+		errno = res;
+		return res;
+	}
+
+	return uxTaskPriorityGet(thread->task);
+}
+//add by lcj end

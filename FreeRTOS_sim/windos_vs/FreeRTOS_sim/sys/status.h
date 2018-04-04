@@ -43,6 +43,14 @@ typedef uint16_t u16_t;
 
 extern uint32_t LuaOS_status[];
 
+//add by lcj 2013
+#ifdef _MSC_VER
+#if (_MSC_VER < 1900)//VS2015 _MSC_VER = 1900
+#define inline _inline//vs2013 use _inline
+#endif
+#endif
+//add by lcj VS2013
+
 inline void status_set(u16_t flag) {
 	enter_critical_section();
 	LuaOS_status[(flag >> 8)] |= (1 << (flag & 0x00ff));

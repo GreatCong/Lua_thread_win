@@ -16,15 +16,31 @@
 //#define __useconds_t uint32_t
 //#endif
 
-int usleep(int useconds)
-{
-	for (int i = 0; i < useconds; i++) { };
+//int usleep(int useconds)
+//{
+//	for (int i = 0; i < useconds; i++) { };
+//
+//	return 0;
+//}
+//
+//#include "Windows.h"
+//int sleep(int n){
+//	Sleep(n);
+//	return 0;
+//}
+
+#include "FreeRTOS.h"
+#include "task.h"
+
+int sleep(int secs) {
+	vTaskDelay((secs * 1000) / ((TickType_t)1000 / configTICK_RATE_HZ));
 
 	return 0;
 }
 
-#include "Windows.h"
-int sleep(int n){
-	Sleep(n);
+int usleep(int usec) {
+	vTaskDelay(usec / ((TickType_t)1000000 / configTICK_RATE_HZ));
+
 	return 0;
 }
+

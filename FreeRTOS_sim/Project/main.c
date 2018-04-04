@@ -187,7 +187,7 @@ int main ( void )
 	any given time. */
 	vCreateSuicidalTasks( mainCREATOR_TASK_PRIORITY );
 
-	xTaskCreate(myTask, "myTask", configMINIMAL_STACK_SIZE, NULL, mainCHECK_TASK_PRIORITY, NULL);
+	/*xTaskCreate(myTask, "myTask", configMINIMAL_STACK_SIZE, NULL, mainCHECK_TASK_PRIORITY, NULL);*/
 	xTaskCreate(LuaTask, "LuaTask", configMINIMAL_STACK_SIZE, NULL, mainCHECK_TASK_PRIORITY, NULL);//执行threa会阻塞其他线程
 	//user_init();//add by lcj
 

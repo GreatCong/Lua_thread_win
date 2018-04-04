@@ -2,7 +2,7 @@
 It can be used in Windows and Linux
 
 ## Change
-Here,I add thread function for lua to the Simulator, whwich is from Lua RTOS.
+Here,I add thread function for lua to the Simulator, which is from Lua RTOS.
 
 ### Lua-RTOS
 In their wiki, https://github.com/whitecatboard/Lua-RTOS-ESP32/wiki, you have more information about Lua-RTOS.
@@ -20,3 +20,13 @@ In their wiki, https://github.com/whitecatboard/Lua-RTOS-ESP32/wiki, you have mo
 * thread.sleep(seconds)
 * thread.sleepms(milliseconds)
 * thread.sleepus(useconds)
+
+## note
+* VS version supported
+ * VS2013
+ * VS2015
+ * others(not tested)
+* Platform supported
+ * win32(x86)
+
+

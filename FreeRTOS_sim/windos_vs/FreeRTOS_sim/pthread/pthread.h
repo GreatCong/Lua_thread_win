@@ -47,6 +47,21 @@
 typedef void(*sig_t)(int);
 //add by lcj
 #define tskDEF_PRIORITY  configMAX_PRIORITIES-3				//Default task priority 0
+#define CONFIG_LUA_RTOS_LUA_TASK_PRIORITY 3
+#define CONFIG_LUA_RTOS_LUA_THREAD_STACK_SIZE 10240
+#define LUA_TASK_PRIO_MIN tskIDLE_PRIORITY
+#define LUA_TASK_PRIO_MAX configMAX_PRIORITIES-1
+
+#ifdef _MSC_VER
+#if (_MSC_VER < 1900)//VS2015 _MSC_VER = 1900
+struct timespec
+{
+	time_t tv_sec; /*second*/
+	long tv_nsec;/*nanosecond*/
+};
+#endif
+#endif
+//add by lcj end
 
 #define PTHREAD_NSIG 4
 
@@ -91,6 +106,7 @@ typedef int pthread_key_t;
 
 struct pthread_cond {
     struct mtx mutex;
+	int referenced;//add by lcj
 };
 
 typedef struct pthread_cond pthread_cond_t;
@@ -132,7 +148,12 @@ struct pthread {
 struct pthread_attr {
     int stack_size;
     int initial_state;
+	int sched_priority;//add by lcj
 };
+
+struct sched_param {
+	int sched_priority;
+};//add by lcj
 
 typedef struct pthread_attr pthread_attr_t;
 
@@ -143,7 +164,8 @@ typedef struct pthread_attr pthread_attr_t;
 #define PTHREAD_CREATE_JOINABLE 2
 
 void _pthread_init();
-int _pthread_create(pthread_t *id, int stacksize, int initial_state, void *(*start_routine)(void *), void *args);
+//int _pthread_create(pthread_t *id, int stacksize, int initial_state, void *(*start_routine)(void *), void *args);
+int   _pthread_create(pthread_t *id, int priority, int stacksize, int initial_state, void *(*start_routine)(void *), void *args);//add by lcj
 int _pthread_join(pthread_t id);
 int _pthread_free(pthread_t id);
 sig_t _pthread_signal(int s, sig_t h);
@@ -154,6 +176,9 @@ int _pthread_stop(pthread_t id);
 int _pthread_suspend(pthread_t id);
 int _pthread_resume(pthread_t id);
 void _pthread_mutex_free();
+int   _pthread_stack_free(pthread_t id);//add by lcj
+int   _pthread_stack(pthread_t id);//add by lcj
+int _pthread_priority(pthread_t id);//add by lcj
 
 int pthread_attr_init(pthread_attr_t *attr);
 int pthread_attr_destroy(pthread_attr_t *attr);
@@ -162,6 +187,8 @@ int pthread_attr_getstacksize(const pthread_attr_t *attr, size_t *stacksize);
 int pthread_attr_setdetachstate(pthread_attr_t *attr, int detachstate);
 int pthread_setcancelstate(int state, int *oldstate);
 int pthread_attr_setinitialstate(pthread_attr_t *attr, int initial_state);
+int  pthread_attr_setschedparam(pthread_attr_t *attr, const struct sched_param *param);//add by lcj
+int  pthread_attr_getschedparam(const pthread_attr_t *attr, struct sched_param *param);//add by lcj
 
 int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
                           void *(*start_routine) (void *), void *args);

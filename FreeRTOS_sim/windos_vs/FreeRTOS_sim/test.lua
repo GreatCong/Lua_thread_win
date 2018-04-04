@@ -7,7 +7,7 @@ end
 end
 
 f2 = function()
-for i=1,100 do
+for i=1,10 do
 	print("ok2")
 	print(thread.status(th1))
 	thread.sleep(1)
@@ -15,5 +15,6 @@ end
 end
 
 -- Start thread
-th1 = thread.start(f1)
-th2 = thread.start(f2)
+th1 = thread.start(f1,256,7)
+th2 = thread.start(f2,256,3)
+thread.list()

@@ -219,6 +219,7 @@ static int thread_stop_pthreads(lua_State *L, int thid) {
 }
 
 static int thread_list(lua_State *L) {
+#if 0
     struct lthread *thread;
     int idx;
     char status[5];
@@ -261,6 +262,137 @@ static int thread_list(lua_State *L) {
     }
     
     return 0;
+#endif
+
+	struct lthread *thread;
+	int idx;
+	char status[5];
+	uint8_t table = 0;
+	uint8_t monitor = 0;
+
+	// Check if user wants result as a table, or wants result
+	// on the console
+	if (lua_gettop(L) == 1) {
+		luaL_checktype(L, 1, LUA_TBOOLEAN);
+		if (lua_toboolean(L, 1)) {
+			table = 1;
+		}
+	}
+
+	// Check if user wants to monitor threads at regular intervals
+	if (lua_gettop(L) == 2) {
+		luaL_checktype(L, 2, LUA_TBOOLEAN);
+		if (lua_toboolean(L, 2)) {
+			monitor = 1;
+		}
+	}
+
+	if (table && monitor) {
+		return luaL_error(L, "LUA_THREAD_ERR_CANNOT_MONITOR_AS_TABLE");
+		//return luaL_exception_extended(L, LUA_THREAD_ERR_CANNOT_MONITOR_AS_TABLE, NULL);
+	}
+
+//
+//	if (monitor) {
+//		console_clear();
+//		console_hide_cursor();
+//	}
+//
+//monitor_loop:
+//
+//	if (monitor) {
+//		console_gotoxy(0, 0);
+//		printf("Monitoring threads every 0.5 seconds\n\n");
+//	}
+
+	if (!table) {
+		/*printf("-----------------------------------------------\n");
+		printf("     |        |      |           STACK         \n");
+		printf("THID | STATUS | CORE |   SIZE     FREE     USED\n");
+		printf("-----------------------------------------------\n");*/
+		printf("-----------------------------------------------\n");
+		printf("     |        |      |           STACK         \n");
+		printf("THID | STATUS | PRIO |   SIZE     FREE     USED\n");
+		printf("-----------------------------------------------\n");
+	}
+	else {
+		lua_createtable(L, 0, 0);
+	}
+
+	// For each Lua thread ...
+	int i = 0;
+	idx = list_first(&lthread_list);
+	int stack, stack_free,priority;
+
+	while (idx >= 0) {
+		list_get(&lthread_list, idx, (void **)&thread);
+
+		// Get status
+		switch (thread->status) {
+		case LTHREAD_STATUS_RUNNING: strcpy(status, "run"); break;
+		case LTHREAD_STATUS_SUSPENDED: strcpy(status, "susp"); break;
+		default:
+			strcpy(status, "----");
+
+		}
+
+		stack = _pthread_stack(thread->thread);
+		stack_free = _pthread_stack_free(thread->thread);
+		priority = _pthread_priority(thread->thread);
+
+		if (!table) {
+			printf(
+				"% 4d   %-6s   % 4d   % 6d   % 6d   % 6d   \n",
+				idx, status,
+				//_pthread_core(thread->thread),
+				priority,
+				stack,
+				stack_free,
+				stack - stack_free
+			);
+		}
+		else {
+			lua_pushinteger(L, i);
+
+			lua_createtable(L, 0, 4);
+
+			lua_pushinteger(L, idx);
+			lua_setfield(L, -2, "thid");
+
+			lua_pushstring(L, status);
+			lua_setfield(L, -2, "status");
+
+			/*lua_pushinteger(L, _pthread_core(thread->thread));*/
+			/*lua_setfield(L, -2, "core");*/
+			lua_pushinteger(L, priority);
+			lua_setfield(L, -2, "priority");
+
+			lua_pushinteger(L, _pthread_stack_free(thread->thread));
+			lua_setfield(L, -2, "stack");
+
+			lua_settable(L, -3);
+		}
+
+		idx = list_next(&lthread_list, idx);
+		i++;
+	}
+	if (monitor) {
+		printf("\n\nPress q for exit");
+		printf("\n\nmonitor is not supported now\r\n");
+		/*char press;
+
+		uart_read(CONSOLE_UART, &press, 1);
+		if ((press != 'q') && (press != 'Q')) {
+			usleep(500 * 1000);
+			goto monitor_loop;
+		}
+		else {
+			console_show_cursor();
+			printf("\r\n");
+		}*/
+	}
+
+	return table;
 }
 
 static int new_thread(lua_State* L, int run) {
@@ -269,6 +401,33 @@ static int new_thread(lua_State* L, int run) {
     int res, idx;
     pthread_t id;
     int retries;
+	struct sched_param sched;//add by lcj
+
+	//add by lcj
+	// Get stack size, priotity and cpu affinity
+	int stack = luaL_optinteger(L, 2, CONFIG_LUA_RTOS_LUA_THREAD_STACK_SIZE);
+	int priority = luaL_optinteger(L, 3, tskDEF_PRIORITY);
+	//int affinity = luaL_optinteger(L, 4, CONFIG_LUA_RTOS_LUA_THREAD_CPU);
+
+	// Sanity checks
+	if (stack < PTHREAD_STACK_MIN) {
+		return luaL_error(L, "LUA_THREAD_ERR_INVALID_STACK_SIZE");
+	}
+
+	if ((priority < LUA_TASK_PRIO_MIN + 3) || (priority > LUA_TASK_PRIO_MAX)) {
+		return luaL_error(L, "LUA_THREAD_ERR_INVALID_PRIORITY");
+	}
+
+	//if ((affinity < 0) || (affinity > 1)) {
+	//	return luaL_exception(L, LUA_THREAD_ERR_INVALID_CPU_AFFINITY);
+	//}
+
+	// TO DO
+	// Something is wrong somewhere. We need to do this for now.
+	while (lua_gettop(L) > 1) {
+		lua_remove(L, -1);
+	}
+	//add by lcj end
     
     // Allocate space for lthread info
     thread = (struct lthread *)malloc(sizeof(struct lthread));
@@ -299,6 +458,9 @@ static int new_thread(lua_State* L, int run) {
     // Create pthread
     pthread_attr_init(&attr);
     pthread_attr_setstacksize(&attr, defaultThreadStack);
+	// Set priority
+	sched.sched_priority = priority;//add by lcj
+	pthread_attr_setschedparam(&attr, &sched);//add by lcj
 
     if (run)  {
         pthread_attr_setinitialstate(&attr, PTHREAD_INITIAL_STATE_RUN);

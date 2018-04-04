@@ -38,6 +38,8 @@ int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
     int stacksize; // Stack size
     int initial_state; // Initial state
     int res;
+	int priority;      // Priority
+
 
     // Get some arguments need for the thread creation
     if (attr) {
@@ -47,12 +49,17 @@ int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
             return EINVAL;
         }
         initial_state = attr->initial_state;
+		priority = attr->sched_priority;
     } else {
-        stacksize = PTHREAD_STACK_MIN;
-        initial_state = PTHREAD_INITIAL_STATE_RUN;
+        //stacksize = PTHREAD_STACK_MIN;
+        //initial_state = PTHREAD_INITIAL_STATE_RUN;
+		stacksize = CONFIG_LUA_RTOS_LUA_THREAD_STACK_SIZE;
+		initial_state = PTHREAD_INITIAL_STATE_RUN;
+		priority = CONFIG_LUA_RTOS_LUA_TASK_PRIORITY;
     }
     // Create a new pthread
-    res = _pthread_create(thread, stacksize, initial_state, start_routine, args);
+    //res = _pthread_create(thread, stacksize, initial_state, start_routine, args);
+	res = _pthread_create(thread, priority, stacksize, initial_state, start_routine, args);
     if (res) {
         errno = res;
         return res;

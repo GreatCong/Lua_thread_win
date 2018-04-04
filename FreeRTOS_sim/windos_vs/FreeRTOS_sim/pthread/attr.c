@@ -34,7 +34,8 @@
 int pthread_attr_init(pthread_attr_t *attr) {
     attr->stack_size = PTHREAD_STACK_MIN;
     attr->initial_state = PTHREAD_INITIAL_STATE_RUN;
-    
+	attr->sched_priority = CONFIG_LUA_RTOS_LUA_TASK_PRIORITY;
+
     return 0;
 }
 
@@ -78,3 +79,22 @@ int pthread_attr_setdetachstate(pthread_attr_t *attr, int detachstate) {
 int pthread_setcancelstate(int state, int *oldstate) {
     return 0;
 }
+
+//add by lcj
+int pthread_attr_setschedparam(pthread_attr_t *attr, const struct sched_param *param) {
+	if ((param->sched_priority > configMAX_PRIORITIES - 1) || (param->sched_priority < 1)) {
+		errno = EINVAL;
+		return errno;
+	}
+
+	attr->sched_priority = param->sched_priority;
+
+	return 0;
+}
+
+int pthread_attr_getschedparam(const pthread_attr_t *attr, struct sched_param *param) {
+	param->sched_priority = attr->sched_priority;
+
+	return 0;
+}
+//add by lcj end
