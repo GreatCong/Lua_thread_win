@@ -131,4 +131,22 @@ TaskHandle_t xGetCurrentTask() {
 	return (TaskHandle_t)pxCurrentTCB;
 }
 
+//add by lcj
+UBaseType_t uxGetStack(TaskHandle_t h) {
+	int thread_stack;
+
+	enter_critical_section();
+	thread_stack = ((TCB_t *)h)->thread_stackNum;
+	exit_critical_section();
+
+	return thread_stack;
+}
+
+void uxSetStack(UBaseType_t stack) {
+	enter_critical_section();
+	pxCurrentTCB->thread_stackNum = stack;
+	exit_critical_section();
+}
+//add by lcj end
+
 #endif

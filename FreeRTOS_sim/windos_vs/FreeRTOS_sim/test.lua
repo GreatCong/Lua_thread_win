@@ -15,6 +15,6 @@ end
 end
 
 -- Start thread
-th1 = thread.start(f1,256,7)
-th2 = thread.start(f2,256,3)
+th1 = thread.start(f1,512,7)
+th2 = thread.start(f2,1024,3)
 thread.list()

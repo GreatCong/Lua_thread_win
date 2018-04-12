@@ -2273,6 +2273,9 @@ uint32_t uxGetSignaled(TaskHandle_t h);
 void enter_critical_section(void);
 void exit_critical_section(void);
 
+UBaseType_t uxGetStack(TaskHandle_t h);//add by lcj
+void uxSetStack(UBaseType_t stack);//add by lcj
+
 // add by lcj END
 
 #ifdef __cplusplus

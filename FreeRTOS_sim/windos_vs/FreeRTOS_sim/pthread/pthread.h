@@ -48,9 +48,10 @@ typedef void(*sig_t)(int);
 //add by lcj
 #define tskDEF_PRIORITY  configMAX_PRIORITIES-3				//Default task priority 0
 #define CONFIG_LUA_RTOS_LUA_TASK_PRIORITY 3
-#define CONFIG_LUA_RTOS_LUA_THREAD_STACK_SIZE 10240
+#define CONFIG_LUA_RTOS_LUA_THREAD_STACK_SIZE 1024
 #define LUA_TASK_PRIO_MIN tskIDLE_PRIORITY
 #define LUA_TASK_PRIO_MAX configMAX_PRIORITIES-1
+//#define defaultThreadStack 192*5 //add by lcj
 
 #ifdef _MSC_VER
 #if (_MSC_VER < 1900)//VS2015 _MSC_VER = 1900

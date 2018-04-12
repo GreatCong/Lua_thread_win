@@ -49,7 +49,7 @@
 #define LTHREAD_STATUS_RUNNING   1
 #define LTHREAD_STATUS_SUSPENDED 2
 
-#define defaultThreadStack 192*5 //add by lcj
+//#define defaultThreadStack 192*5 //add by lcj
 
 // List of threads
 static struct list lthread_list;
@@ -457,7 +457,7 @@ static int new_thread(lua_State* L, int run) {
 
     // Create pthread
     pthread_attr_init(&attr);
-    pthread_attr_setstacksize(&attr, defaultThreadStack);
+    pthread_attr_setstacksize(&attr, stack);
 	// Set priority
 	sched.sched_priority = priority;//add by lcj
 	pthread_attr_setschedparam(&attr, &sched);//add by lcj
